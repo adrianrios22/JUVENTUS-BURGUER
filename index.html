@@ -1171,7 +1171,7 @@
               type="search"
             /><span class="cuenta" id="cuentaProductos"></span>
           </div>
-          <p class="muted">Imágenes ilustrativas por categoría. Revisa los ingredientes de cada plato.</p>
+          <p class="muted">Imágenes ilustrativas. La presentación puede variar; revisa los ingredientes de cada plato.</p>
           <div class="productos-grid" id="productosGrid"></div>
           <div class="empty" hidden="" id="sinResultados">
             No encontramos productos con esa búsqueda.
@@ -2084,7 +2084,8 @@
          03. FOTOS POR CATEGORÍA
          Archivos en la carpeta imagenes, junto a este index.html.
          Para cambiar una foto, reemplaza el archivo o modifica su ruta.
-         Son ilustraciones de categoría; los ingredientes de cada plato
+         Respaldo por categoría; las fotos individuales están en 03B.
+         Los ingredientes de cada plato
          se consultan en PRODUCTOS.
          ============================================================ */
       const IMAGENES = {
@@ -2107,6 +2108,252 @@
         "Cervezas": "./imagenes/cervezas.webp",
         "Micheladas": "./imagenes/micheladas.webp",
       };
+
+      /* ============================================================
+         03B. FOTOS INDIVIDUALES DE LOS 100 PRODUCTOS
+         Cada clave coincide con el id de un producto de la carta.
+         Las fotos anteriores se conservan cuando corresponden al plato.
+         Para sustituir una foto, cambia únicamente su ruta.
+         ============================================================ */
+      const IMAGENES_PRODUCTOS = {
+
+        // Entradas
+        // Chicharrón con papa criolla
+        p1: "./imagenes/entradas.webp",
+
+        // Perros
+        // Perro americano tradicional
+        p2: "./imagenes/p2-perro-americano-tradicional.webp",
+        // Perro ranchero corriente
+        p3: "./imagenes/p3-perro-ranchero-corriente.webp",
+        // Choriperro corriente
+        p4: "./imagenes/p4-choriperro-corriente.webp",
+        // Perro suizo corriente
+        p5: "./imagenes/p5-perro-suizo-corriente.webp",
+        // Perro hawaiano
+        p6: "./imagenes/p6-perro-hawaiano.webp",
+        // Perro especial americano
+        p7: "./imagenes/p7-perro-especial-americano.webp",
+        // Choriperro especial
+        p8: "./imagenes/p8-choriperro-especial.webp",
+        // Perro suizo especial
+        p9: "./imagenes/p9-perro-suizo-especial.webp",
+        // Perro loco
+        p10: "./imagenes/p10-perro-loco.webp",
+        // Perro colombianito
+        p11: "./imagenes/p11-perro-colombianito.webp",
+
+        // Hamburguesas
+        // Tradicional sin papa
+        p12: "./imagenes/p12-tradicional-sin-papa.webp",
+        // Solo pollo
+        p13: "./imagenes/p13-solo-pollo.webp",
+        // Tradicional
+        p14: "./imagenes/p14-tradicional.webp",
+        // Doble sencilla
+        p15: "./imagenes/p15-doble-sencilla.webp",
+        // Especial
+        p16: "./imagenes/p16-especial.webp",
+        // Colombianita
+        p17: "./imagenes/p17-colombianita.webp",
+        // Ranchera
+        p18: "./imagenes/p18-ranchera.webp",
+        // Juventus
+        p19: "./imagenes/hamburguesas.webp",
+        // Especial de filete
+        p20: "./imagenes/p20-especial-de-filete.webp",
+        // Doble especial
+        p21: "./imagenes/p21-doble-especial.webp",
+        // Americana
+        p22: "./imagenes/p22-americana.webp",
+        // Mexicana
+        p23: "./imagenes/p23-mexicana.webp",
+        // La poporra
+        p24: "./imagenes/p24-la-poporra.webp",
+        // Carnívora
+        p25: "./imagenes/p25-carnivora.webp",
+        // 3x3 súper
+        p26: "./imagenes/p26-3x3-super.webp",
+
+        // Asados
+        // Chatas al carbón 350 g
+        p27: "./imagenes/p27-chatas-al-carbon-350-g.webp",
+        // Pechuga al carbón 350 g
+        p28: "./imagenes/p28-pechuga-al-carbon-350-g.webp",
+        // Pechuga al carbón en salsa de champiñón 350 g
+        p29: "./imagenes/p29-pechuga-al-carbon-en-salsa-de-champinon-350-g.webp",
+        // Carne de capón oreada 350 g
+        p30: "./imagenes/p30-carne-de-capon-oreada-350-g.webp",
+        // Carne de campo fresca al carbón 350 g
+        p31: "./imagenes/asados.webp",
+        // Picada criolla al carbón
+        p32: "./imagenes/p32-picada-criolla-al-carbon.webp",
+        // Metrocarne fresca al carbón
+        p33: "./imagenes/p33-metrocarne-fresca-al-carbon.webp",
+
+        // Pizza porción
+        // Hawaiana
+        p34: "./imagenes/pizza-porcion.webp",
+        // Solo carne fría
+        p35: "./imagenes/p35-solo-carne-fria.webp",
+        // Campesina
+        p36: "./imagenes/p36-campesina.webp",
+        // Pollo champiñón
+        p37: "./imagenes/p37-pollo-champinon.webp",
+        // Marinera
+        p38: "./imagenes/p38-marinera.webp",
+        // Choripizza
+        p39: "./imagenes/p39-choripizza.webp",
+        // Pizza Juventus
+        p40: "./imagenes/p40-pizza-juventus.webp",
+
+        // Panzerotti
+        // Hawaiano
+        p41: "./imagenes/panzerotti.webp",
+        // Pollo champiñón
+        p42: "./imagenes/p42-pollo-champinon.webp",
+        // Campesina
+        p43: "./imagenes/p43-campesina.webp",
+        // Carnes frías
+        p44: "./imagenes/p44-carnes-frias.webp",
+        // Marinero
+        p45: "./imagenes/p45-marinero.webp",
+        // Juventus
+        p46: "./imagenes/p46-juventus.webp",
+        // Choripizza
+        p47: "./imagenes/p47-choripizza.webp",
+
+        // Pizzetas
+        // Pizzeta tradicional 20 cm
+        p48: "./imagenes/pizzetas.webp",
+        // Pizzeta tradicional 30 cm
+        p49: "./imagenes/p49-pizzeta-tradicional-30-cm.webp",
+
+        // Varios
+        // Papas locas
+        p50: "./imagenes/p50-papas-locas.webp",
+        // Papas locas poderosas
+        p51: "./imagenes/p51-papas-locas-poderosas.webp",
+        // Papas locas mega poderosas
+        p52: "./imagenes/p52-papas-locas-mega-poderosas.webp",
+        // Patacón poderoso
+        p53: "./imagenes/p53-patacon-poderoso.webp",
+        // Patacón relleno
+        p54: "./imagenes/p54-patacon-relleno.webp",
+        // Alitas a la BBQ
+        p55: "./imagenes/p55-alitas-a-la-bbq.webp",
+        // Costillitas BBQ
+        p56: "./imagenes/p56-costillitas-bbq.webp",
+        // Salchipapa corriente
+        p57: "./imagenes/p57-salchipapa-corriente.webp",
+        // Salchipapa especial
+        p58: "./imagenes/p58-salchipapa-especial.webp",
+        // Choripapa corriente
+        p59: "./imagenes/p59-choripapa-corriente.webp",
+        // Choripapa especial
+        p60: "./imagenes/p60-choripapa-especial.webp",
+        // Suizo corriente
+        p61: "./imagenes/p61-suizo-corriente.webp",
+        // Suizo especial
+        p62: "./imagenes/p62-suizo-especial.webp",
+        // Morrongo
+        p63: "./imagenes/p63-morrongo.webp",
+        // Picada mixta
+        p64: "./imagenes/p64-picada-mixta.webp",
+        // Picada mixta para 3 personas
+        p65: "./imagenes/p65-picada-mixta-para-3-personas.webp",
+
+        // Desgranados
+        // Desgranado vegetariano
+        p66: "./imagenes/p66-desgranado-vegetariano.webp",
+        // Desgranado de mazorca mixto
+        p67: "./imagenes/p67-desgranado-de-mazorca-mixto.webp",
+        // Desgranado de mazorca
+        p68: "./imagenes/desgranados.webp",
+
+        // Arepas
+        // Arepa corriente
+        p69: "./imagenes/p69-arepa-corriente.webp",
+        // Arepa especial de pollo
+        p70: "./imagenes/p70-arepa-especial-de-pollo.webp",
+        // Arepa especial de carne
+        p71: "./imagenes/p71-arepa-especial-de-carne.webp",
+        // Arepa mixta
+        p72: "./imagenes/p72-arepa-mixta.webp",
+
+        // Infantil
+        // Nuggets
+        p73: "./imagenes/infantil.webp",
+
+        // Adicionales
+        // Porción de papa francesa
+        p74: "./imagenes/adicionales.webp",
+        // Porción de tocineta
+        p75: "./imagenes/p75-porcion-de-tocineta.webp",
+        // Porción de salchicha
+        p76: "./imagenes/p76-porcion-de-salchicha.webp",
+        // Porción de queso
+        p77: "./imagenes/p77-porcion-de-queso.webp",
+        // Porción de chorizo
+        p78: "./imagenes/p78-porcion-de-chorizo.webp",
+        // Porción de carne de hamburguesa
+        p79: "./imagenes/p79-porcion-de-carne-de-hamburguesa.webp",
+        // Porción de lomo de res 130 g
+        p80: "./imagenes/p80-porcion-de-lomo-de-res-130-g.webp",
+
+        // Caldos y desayunos
+        // Caldo con huevo
+        p81: "./imagenes/p81-caldo-con-huevo.webp",
+        // Caldo de costilla
+        p82: "./imagenes/caldos.webp",
+        // Popular Juventus
+        p83: "./imagenes/p83-popular-juventus.webp",
+        // Huevos revueltos
+        p84: "./imagenes/p84-huevos-revueltos.webp",
+        // Huevos pericos
+        p85: "./imagenes/p85-huevos-pericos.webp",
+
+        // Ensaladas
+        // Ensalada de pechuga
+        p86: "./imagenes/ensaladas.webp",
+        // Ensalada de atún
+        p87: "./imagenes/p87-ensalada-de-atun.webp",
+
+        // Bebidas
+        // Jarra de limonada
+        p88: "./imagenes/bebidas.webp",
+
+        // Jugos
+        // Jugo natural en agua
+        p89: "./imagenes/jugos.webp",
+        // Jugo natural en leche
+        p90: "./imagenes/p90-jugo-natural-en-leche.webp",
+
+        // Cervezas
+        // Poker
+        p91: "./imagenes/p91-poker.webp",
+        // Águila Original
+        p92: "./imagenes/p92-aguila-original.webp",
+        // Club Colombia
+        p93: "./imagenes/p93-club-colombia.webp",
+        // Águila Light
+        p94: "./imagenes/p94-aguila-light.webp",
+        // Corona
+        p95: "./imagenes/p95-corona.webp",
+
+        // Micheladas
+        // Michelada tradicional (sal y limón)
+        p96: "./imagenes/p96-michelada-tradicional-sal-y-limon.webp",
+        // Michelada de mango
+        p97: "./imagenes/p97-michelada-de-mango.webp",
+        // Michelada de maracuyá
+        p98: "./imagenes/p98-michelada-de-maracuya.webp",
+        // Michelada de piña
+        p99: "./imagenes/p99-michelada-de-pina.webp",
+        // Michelada de fresa
+        p100: "./imagenes/p100-michelada-de-fresa.webp",
+      };
+
       /* ============================================================
          04. UTILIDADES Y ESTADO
          ============================================================ */
@@ -2170,14 +2417,22 @@
           const foto = document.createElement("div");
           foto.className = "producto-imagen";
           const img = document.createElement("img");
-          img.src = IMAGENES[p.cat] || IMAGENES["Hamburguesas"];
-          img.alt = "Imagen ilustrativa de " + p.cat;
+          img.src = IMAGENES_PRODUCTOS[p.id] || IMAGENES[p.cat];
+          img.alt = "Imagen ilustrativa de " + p.n;
           img.loading = "lazy";
           img.decoding = "async";
           img.onerror = () => {
-            img.onerror = null;
-            img.hidden = true;
-          };
+              const respaldo = IMAGENES[p.cat];
+              img.onerror = () => {
+                img.onerror = null;
+                img.hidden = true;
+              };
+              if (respaldo) {
+                img.src = respaldo;
+              } else {
+                img.hidden = true;
+              }
+            };
           const tag = document.createElement("span");
           tag.className = "tag";
           tag.textContent = p.cat;
