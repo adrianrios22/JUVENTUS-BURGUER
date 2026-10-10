@@ -1,6 +1,7 @@
 <!doctype html>
 
 <html lang="es">
+  <!-- CONFIGURACIÓN DE LA PÁGINA Y ESTILOS -->
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
@@ -10,7 +11,6 @@
       name="description"
     />
     <meta content="#090909" name="theme-color" />
-    <link href="https://images.unsplash.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -18,6 +18,10 @@
       rel="stylesheet"
     />
     <style>
+
+      /* ============================================================
+         ESTILOS: COLORES Y VARIABLES GENERALES
+         ============================================================ */
       :root {
         --fondo: #090909;
         --fondo2: #111;
@@ -65,6 +69,10 @@
         display: block;
         width: 100%;
       }
+
+      /* ============================================================
+         ESTILOS: CONTENEDORES, TÍTULOS Y BOTONES
+         ============================================================ */
       .contenedor {
         width: min(92%, var(--max));
         margin: auto;
@@ -119,6 +127,10 @@
       .btn-outline:hover {
         color: #111;
       }
+
+      /* ============================================================
+         ESTILOS: CABECERA Y NAVEGACIÓN
+         ============================================================ */
       .topbar {
         height: 6px;
         background: linear-gradient(
@@ -181,6 +193,10 @@
         color: #fff;
         font-size: 28px;
       }
+
+      /* ============================================================
+         ESTILOS: PORTADA PRINCIPAL
+         ============================================================ */
       .hero {
         position: relative;
         padding: 100px 0;
@@ -189,7 +205,7 @@
         align-items: center;
         background:
           linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.94) 31%, rgba(0, 0, 0, 0.45) 85%),
-          url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1700&q=82&auto=format&fit=crop")
+          url("./imagenes/hamburguesas.webp")
             center/cover;
         overflow: hidden;
       }
@@ -239,6 +255,10 @@
         gap: 12px;
         flex-wrap: wrap;
       }
+
+      /* ============================================================
+         ESTILOS: FRANJA DE BENEFICIOS
+         ============================================================ */
       .stats {
         background: #161616;
         border-top: 1px solid #272727;
@@ -265,6 +285,10 @@
         color: #bbb;
         font-size: 12px;
       }
+
+      /* ============================================================
+         ESTILOS: FILTROS DE CATEGORÍAS
+         ============================================================ */
       .cats {
         display: flex;
         gap: 10px;
@@ -289,6 +313,10 @@
         color: #111;
         border-color: var(--principal);
       }
+
+      /* ============================================================
+         ESTILOS: BUSCADOR Y CATÁLOGO
+         ============================================================ */
       .catalogo {
         background: #101010;
       }
@@ -317,6 +345,10 @@
         font-size: 12px;
         white-space: nowrap;
       }
+
+      /* ============================================================
+         ESTILOS: TARJETAS E IMÁGENES DE PRODUCTOS
+         ============================================================ */
       .productos-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -344,8 +376,9 @@
         background: #252525;
       }
       .producto-imagen img {
+        width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         transition: transform 0.3s;
       }
       .producto:hover img {
@@ -440,6 +473,10 @@
       .promo-emoji {
         font-size: 90px;
       }
+
+      /* ============================================================
+         ESTILOS: INFORMACIÓN Y CONTACTO
+         ============================================================ */
       .info-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -1072,11 +1109,12 @@
       }
     </style>
   </head>
+  <!-- CONTENIDO VISIBLE DE LA PÁGINA -->
   <body>
     <div class="topbar"></div>
     <header>
       <div class="contenedor nav">
-                <a class="brand brand-logo" href="#inicio">
+        <a class="brand brand-logo" href="#inicio">
           <img
             src="./logo-juventus.png"
             alt="Juventus Burger"
@@ -1111,6 +1149,7 @@
           <div class="stat"><b>🛒 FÁCIL</b><small>Pedido por WhatsApp</small></div>
         </div>
       </div>
+      <!-- CATEGORÍAS -->
       <section id="categorias">
         <div class="contenedor">
           <div class="eyebrow">Elige tu jugada</div>
@@ -1132,13 +1171,14 @@
               type="search"
             /><span class="cuenta" id="cuentaProductos"></span>
           </div>
+          <p class="muted">Imágenes ilustrativas por categoría. Revisa los ingredientes de cada plato.</p>
           <div class="productos-grid" id="productosGrid"></div>
           <div class="empty" hidden="" id="sinResultados">
             No encontramos productos con esa búsqueda.
           </div>
         </div>
       </section>
-           <section
+      <section
         id="formacion"
         style="padding: 0; background: #090909;"
       >
@@ -1150,6 +1190,7 @@
           style="display: block; width: 100%; height: auto;"
         />
       </section>
+      <!-- DATOS DEL RESTAURANTE -->
       <section id="contacto">
         <div class="contenedor">
           <div class="eyebrow">Estamos aquí</div>
@@ -1326,660 +1367,749 @@
     <script>
       "use strict";
       /* ===== DATOS PARA PERSONALIZAR POR CLIENTE ===== */
-      const CONFIG = { nombre: "Juventus Burger", whatsapp: "573103574308", moneda: "COP" };
-      /* PRODUCTOS DE LA CARTA 2025: confirmar precios antes de publicar */
-      const PRODUCTOS = [
-        { id: "p1", cat: "Entradas", n: "Chicharrón con papa criolla", p: 15000, d: "", v: [] },
-        {
-          id: "p2",
-          cat: "Perros",
-          n: "Perro americano tradicional",
-          p: 19000,
-          d: "Pan artesanal. Salchicha americana, cebolla, queso rayado, papa picada, salsas y queso doble crema.",
-          v: [],
-        },
-        {
-          id: "p3",
-          cat: "Perros",
-          n: "Perro ranchero corriente",
-          p: 19000,
-          d: "Pan artesanal. Salchicha ranchera, cebolla picada, queso rayado, papa picada, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p4",
-          cat: "Perros",
-          n: "Choriperro corriente",
-          p: 19000,
-          d: "Pan artesanal. Chorizo, cebolla picada, queso rayado, papa desmenuzada, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p5",
-          cat: "Perros",
-          n: "Perro suizo corriente",
-          p: 19000,
-          d: "Pan artesanal. Salchicha suiza, cebolla picada, queso rayado, papa picada, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p6",
-          cat: "Perros",
-          n: "Perro hawaiano",
-          p: 20000,
-          d: "Pan artesanal. Salchicha, cebolla picada, queso rayado, papa picada, piña, jamón, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p7",
-          cat: "Perros",
-          n: "Perro especial americano",
-          p: 23000,
-          d: "Pan artesanal. Salchicha americana, cebolla picada, queso rayado, papa picada, pollo desmenuzado, tocineta, jamón y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p8",
-          cat: "Perros",
-          n: "Choriperro especial",
-          p: 23000,
-          d: "Pan artesanal. Chorizo, cebolla picada, queso rayado, papa picada, pollo desmenuzado, tocineta, jamón, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p9",
-          cat: "Perros",
-          n: "Perro suizo especial",
-          p: 25000,
-          d: "Pan artesanal. Salchicha suiza, cebolla picada, queso rayado, papa picada, pollo desmenuzado, tocineta, jamón, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p10",
-          cat: "Perros",
-          n: "Perro loco",
-          p: 27000,
-          d: "Pan artesanal. Salchicha americana, cebolla picada, queso rayado, papa picada, pollo desmenuzado, lomo de res, cabano, tocineta, jamón y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p11",
-          cat: "Perros",
-          n: "Perro colombianito",
-          p: 26000,
-          d: "Pan artesanal. Salchicha americana, cebolla grille, carne desmechada, pollo desmenuzado, maíz tierno, jamón, tocineta, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p12",
-          cat: "Hamburguesas",
-          n: "Tradicional sin papa",
-          p: 16000,
-          d: "Pan artesanal. Carne 140 g, queso doble crema, jamón, lechuga, tomate y cebolla grille.",
-          v: [],
-        },
-        {
-          id: "p13",
-          cat: "Hamburguesas",
-          n: "Solo pollo",
-          p: 18000,
-          d: "Pan artesanal. Pollo desmenuzado, lechuga, tomate, cebolla grille, jamón, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p14",
-          cat: "Hamburguesas",
-          n: "Tradicional",
-          p: 20000,
-          d: "Pan artesanal. Carne 140 g, jamón, queso doble crema, lechuga, tomate, cebolla grille y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p15",
-          cat: "Hamburguesas",
-          n: "Doble sencilla",
-          p: 24000,
-          d: "Pan artesanal. Doble carne, queso doble crema, jamón, lechuga, tomate, cebolla grille y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p16",
-          cat: "Hamburguesas",
-          n: "Especial",
-          p: 25000,
-          d: "Pan artesanal. Carne 140 g, queso doble crema, jamón, pollo, tocineta, lechuga, tomate, cebolla grille y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p17",
-          cat: "Hamburguesas",
-          n: "Colombianita",
-          p: 25000,
-          d: "Pan artesanal. Carne 140 g, lechuga, tomate, cebolla grille, jamón, queso doble crema, pollo desmenuzado, maíz, pimentón y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p18",
-          cat: "Hamburguesas",
-          n: "Ranchera",
-          p: 26000,
-          d: "Pan artesanal. Carne 140 g, huevo frito, chorizo, lechuga, tomate, cebolla grille, jamón, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p19",
-          cat: "Hamburguesas",
-          n: "Juventus",
-          p: 26000,
-          d: "Pan artesanal. Carne 140 g, jamón, lechuga, tomate, cebolla grille, queso doble crema, maduro, chorizo, tocineta y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p20",
-          cat: "Hamburguesas",
-          n: "Especial de filete",
-          p: 26000,
-          d: "Pan artesanal. Filete de pechuga, carne 140 g, lechuga, tomate, cebolla grille, jamón, queso doble crema, tocineta y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p21",
-          cat: "Hamburguesas",
-          n: "Doble especial",
-          p: 27000,
-          d: "Pan artesanal. Doble carne, queso doble crema, jamón, pollo, tocineta, lechuga, tomate, cebolla grille y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p22",
-          cat: "Hamburguesas",
-          n: "Americana",
-          p: 28000,
-          d: "Pan artesanal. Carne 140 g, jamón, lechuga, tomate, cebolla grille, queso doble crema, pollo, champiñones, salchicha americana, tocineta y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p23",
-          cat: "Hamburguesas",
-          n: "Mexicana",
-          p: 30000,
-          d: "Pan artesanal. Carne 140 g, lomo de cerdo desmechado, chorizo, aguacate, jalapeños, aros de cebolla, lechuga, tomate, jamón, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p24",
-          cat: "Hamburguesas",
-          n: "La poporra",
-          p: 31000,
-          d: "Pan artesanal. Carne 140 g, carne desmechada, arepa, chicharrón, jamón, queso doble crema, aros de cebolla, lechuga, tomate y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p25",
-          cat: "Hamburguesas",
-          n: "Carnívora",
-          p: 31000,
-          d: "Pan artesanal. Carne 140 g, filete de pechuga, carne desmechada, tocineta, queso doble crema, aros de cebolla, lechuga, tomate y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p26",
-          cat: "Hamburguesas",
-          n: "3x3 súper",
-          p: 37000,
-          d: "Pan artesanal. Tres carnes de hamburguesa de 140 g, queso doble crema, filete de pechuga, tocineta, chorizo, cebolla grille, jamón, lechuga y tomate.",
-          v: [],
-        },
-        {
-          id: "p27",
-          cat: "Asados",
-          n: "Chatas al carbón 350 g",
-          p: 32000,
-          d: "Papa francesa, yuca o ensalada.",
-          v: [],
-        },
-        {
-          id: "p28",
-          cat: "Asados",
-          n: "Pechuga al carbón 350 g",
-          p: 28000,
-          d: "Papa francesa, yuca o ensalada.",
-          v: [],
-        },
-        {
-          id: "p29",
-          cat: "Asados",
-          n: "Pechuga al carbón en salsa de champiñón 350 g",
-          p: 30000,
-          d: "Papa francesa y ensalada.",
-          v: [],
-        },
-        {
-          id: "p30",
-          cat: "Asados",
-          n: "Carne de capón oreada 350 g",
-          p: 32000,
-          d: "Yuca al vapor y ensalada.",
-          v: [],
-        },
-        {
-          id: "p31",
-          cat: "Asados",
-          n: "Carne de campo fresca al carbón 350 g",
-          p: 28000,
-          d: "Yuca al vapor y ensalada.",
-          v: [],
-        },
-        {
-          id: "p32",
-          cat: "Asados",
-          n: "Picada criolla al carbón",
-          p: 60000,
-          d: "Carne fresca 300 g, pechuga 300 g, chorizo artesanal 200 g, costilla de cerdo 350 g; con yuca al vapor, papa criolla y ensalada.",
-          v: [],
-        },
-        {
-          id: "p33",
-          cat: "Asados",
-          n: "Metrocarne fresca al carbón",
-          p: 80000,
-          d: "Carne fresca 300 g, pechuga 300 g, chorizo artesanal 200 g, costilla de cerdo 350 g; con yuca al vapor, ensalada y suero.",
-          v: [],
-        },
-        {
-          id: "p34",
-          cat: "Pizza porción",
-          n: "Hawaiana",
-          p: 9000,
-          d: "Piña, jamón y queso.",
-          v: [],
-        },
-        {
-          id: "p35",
-          cat: "Pizza porción",
-          n: "Solo carne fría",
-          p: 9000,
-          d: "Jamón, cabano y salami.",
-          v: [],
-        },
-        {
-          id: "p36",
-          cat: "Pizza porción",
-          n: "Campesina",
-          p: 9000,
-          d: "Carne molida, verduras salteadas, pollo, maíz y salchicha.",
-          v: [],
-        },
-        { id: "p37", cat: "Pizza porción", n: "Pollo champiñón", p: 9000, d: "", v: [] },
-        {
-          id: "p38",
-          cat: "Pizza porción",
-          n: "Marinera",
-          p: 10000,
-          d: "Camarón, pollo, champiñón, palmito de cangrejo y verduras salteadas.",
-          v: [],
-        },
-        {
-          id: "p39",
-          cat: "Pizza porción",
-          n: "Choripizza",
-          p: 10000,
-          d: "Chorizo, huevo de codorniz, carne molida, maduro frito y maíz.",
-          v: [],
-        },
-        {
-          id: "p40",
-          cat: "Pizza porción",
-          n: "Pizza Juventus",
-          p: 10000,
-          d: "Chorizo, carne molida, maduro y tocineta.",
-          v: [],
-        },
-        { id: "p41", cat: "Panzerotti", n: "Hawaiano", p: 12000, d: "", v: [] },
-        { id: "p42", cat: "Panzerotti", n: "Pollo champiñón", p: 12000, d: "", v: [] },
-        { id: "p43", cat: "Panzerotti", n: "Campesina", p: 12000, d: "", v: [] },
-        { id: "p44", cat: "Panzerotti", n: "Carnes frías", p: 12000, d: "", v: [] },
-        { id: "p45", cat: "Panzerotti", n: "Marinero", p: 15000, d: "", v: [] },
-        { id: "p46", cat: "Panzerotti", n: "Juventus", p: 15000, d: "", v: [] },
-        { id: "p47", cat: "Panzerotti", n: "Choripizza", p: 15000, d: "", v: [] },
-        {
-          id: "p48",
-          cat: "Pizzetas",
-          n: "Pizzeta tradicional 20 cm",
-          p: 16000,
-          d: "Consultar sabores disponibles.",
-          v: [],
-        },
-        {
-          id: "p49",
-          cat: "Pizzetas",
-          n: "Pizzeta tradicional 30 cm",
-          p: 26000,
-          d: "Consultar sabores disponibles.",
-          v: [],
-        },
-        {
-          id: "p50",
-          cat: "Varios",
-          n: "Papas locas",
-          p: 29000,
-          d: "Chorizo, pollo desmenuzado, maíz tierno, lechuga, queso gratinado, tocineta, salsas y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p51",
-          cat: "Varios",
-          n: "Papas locas poderosas",
-          p: 32000,
-          d: "Chorizo, pollo desmenuzado, maíz, lomito de res, lechuga, queso doble crema, tocineta, salsas y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p52",
-          cat: "Varios",
-          n: "Papas locas mega poderosas",
-          p: 45000,
-          d: "Chorizo, filete de pechuga, maíz tierno, carne desmechada, salchicha americana, maduro picado, tocineta, lechuga y queso doble crema.",
-          v: [],
-        },
-        {
-          id: "p53",
-          cat: "Varios",
-          n: "Patacón poderoso",
-          p: 26000,
-          d: "Maíz tierno, lomito de res, chorizo, filete de pechuga, cebolla grille, tocineta y queso doble crema.",
-          v: [],
-        },
-        {
-          id: "p54",
-          cat: "Varios",
-          n: "Patacón relleno",
-          p: 23000,
-          d: "Pollo desmenuzado, lomo de res, maíz tierno, cebolla grille y queso gratinado.",
-          v: [],
-        },
-        {
-          id: "p55",
-          cat: "Varios",
-          n: "Alitas a la BBQ",
-          p: 22000,
-          d: "Papa francesa y ensalada.",
-          v: [],
-        },
-        {
-          id: "p56",
-          cat: "Varios",
-          n: "Costillitas BBQ",
-          p: 25000,
-          d: "Papa francesa y ensalada.",
-          v: [],
-        },
-        { id: "p57", cat: "Varios", n: "Salchipapa corriente", p: 17000, d: "", v: [] },
-        {
-          id: "p58",
-          cat: "Varios",
-          n: "Salchipapa especial",
-          p: 28000,
-          d: "Salchicha, pollo desmenuzado, lechuga, queso doble crema, tocineta, salsas y papa francesa.",
-          v: [],
-        },
-        { id: "p59", cat: "Varios", n: "Choripapa corriente", p: 18000, d: "", v: [] },
-        {
-          id: "p60",
-          cat: "Varios",
-          n: "Choripapa especial",
-          p: 28000,
-          d: "Chorizo, pollo desmenuzado, lechuga, queso doble crema, tocineta y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p61",
-          cat: "Varios",
-          n: "Suizo corriente",
-          p: 24000,
-          d: "Salchicha suiza, lechuga, queso doble crema, papa picada, salsas y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p62",
-          cat: "Varios",
-          n: "Suizo especial",
-          p: 28000,
-          d: "Salchicha suiza, pollo desmenuzado, lechuga, tocineta, queso doble crema, salsas y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p63",
-          cat: "Varios",
-          n: "Morrongo",
-          p: 32000,
-          d: "Lomo de res, chorizo, filete de pechuga, maíz tierno, porción de papa y queso gratinado.",
-          v: [],
-        },
-        {
-          id: "p64",
-          cat: "Varios",
-          n: "Picada mixta",
-          p: 32000,
-          d: "Lomo de res, lomo de cerdo, pechuga, salchicha, chorizo, ensalada y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p65",
-          cat: "Varios",
-          n: "Picada mixta para 3 personas",
-          p: 40000,
-          d: "Lomo de res, lomo de cerdo, salchicha, pechuga, chorizo y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p66",
-          cat: "Desgranados",
-          n: "Desgranado vegetariano",
-          p: 20000,
-          d: "Maíz tierno, verdura salteada, champiñón, queso gratinado, queso rayado y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p67",
-          cat: "Desgranados",
-          n: "Desgranado de mazorca mixto",
-          p: 30000,
-          d: "Maíz tierno, pollo desmenuzado, lomito de res, salchicha, tocineta, salsas, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p68",
-          cat: "Desgranados",
-          n: "Desgranado de mazorca",
-          p: 28000,
-          d: "Maíz tierno, pollo desmenuzado, salchicha, tocineta, salsas, queso doble crema y papa francesa.",
-          v: [],
-        },
-        {
-          id: "p69",
-          cat: "Arepas",
-          n: "Arepa corriente",
-          p: 7000,
-          d: "Cebolla picada, queso rayado, papa picada y salsas.",
-          v: [],
-        },
-        {
-          id: "p70",
-          cat: "Arepas",
-          n: "Arepa especial de pollo",
-          p: 12000,
-          d: "Pollo desmenuzado, cebolla picada, queso rayado, papa picada y salsas.",
-          v: [],
-        },
-        {
-          id: "p71",
-          cat: "Arepas",
-          n: "Arepa especial de carne",
-          p: 13000,
-          d: "Carne de hamburguesa, cebolla picada, queso rayado, papa picada y salsas.",
-          v: [],
-        },
-        {
-          id: "p72",
-          cat: "Arepas",
-          n: "Arepa mixta",
-          p: 15000,
-          d: "Carne de hamburguesa, pollo desmenuzado, cebolla picada, queso rayado, papa picada y salsas.",
-          v: [],
-        },
-        {
-          id: "p73",
-          cat: "Infantil",
-          n: "Nuggets",
-          p: 22000,
-          d: "5 nuggets de pollo con porción de papa francesa y salsas.",
-          v: [],
-        },
-        { id: "p74", cat: "Adicionales", n: "Porción de papa francesa", p: 10000, d: "", v: [] },
-        { id: "p75", cat: "Adicionales", n: "Porción de tocineta", p: 4000, d: "", v: [] },
-        { id: "p76", cat: "Adicionales", n: "Porción de salchicha", p: 5000, d: "", v: [] },
-        { id: "p77", cat: "Adicionales", n: "Porción de queso", p: 4000, d: "", v: [] },
-        { id: "p78", cat: "Adicionales", n: "Porción de chorizo", p: 6000, d: "", v: [] },
-        {
-          id: "p79",
-          cat: "Adicionales",
-          n: "Porción de carne de hamburguesa",
-          p: 6000,
-          d: "",
-          v: [],
-        },
-        { id: "p80", cat: "Adicionales", n: "Porción de lomo de res 130 g", p: 6000, d: "", v: [] },
-        {
-          id: "p81",
-          cat: "Caldos y desayunos",
-          n: "Caldo con huevo",
-          p: 12000,
-          d: "Arepa blanca o amarilla.",
-          v: [],
-        },
-        {
-          id: "p82",
-          cat: "Caldos y desayunos",
-          n: "Caldo de costilla",
-          p: 15000,
-          d: "Arepa blanca o amarilla.",
-          v: [],
-        },
-        {
-          id: "p83",
-          cat: "Caldos y desayunos",
-          n: "Popular Juventus",
-          p: 44000,
-          d: "Caldo de costilla, chatas 250 g, arepa, yuca al vapor y ensalada.",
-          v: [],
-        },
-        {
-          id: "p84",
-          cat: "Caldos y desayunos",
-          n: "Huevos revueltos",
-          p: 5000,
-          d: "Arepa blanca o amarilla.",
-          v: [],
-        },
-        {
-          id: "p85",
-          cat: "Caldos y desayunos",
-          n: "Huevos pericos",
-          p: 6000,
-          d: "Arepa blanca o amarilla.",
-          v: [],
-        },
-        {
-          id: "p86",
-          cat: "Ensaladas",
-          n: "Ensalada de pechuga",
-          p: 16000,
-          d: "Lomito de pechuga, maíz tierno, lechuga, tomate, cebolla rebanada y aguacate.",
-          v: [],
-        },
-        {
-          id: "p87",
-          cat: "Ensaladas",
-          n: "Ensalada de atún",
-          p: 20000,
-          d: "Atún, maíz tierno, lechuga, tomate, cebolla rebanada y aguacate.",
-          v: [],
-        },
-        { id: "p88", cat: "Bebidas", n: "Jarra de limonada", p: 5000, d: "", v: [] },
-        {
-          id: "p89",
-          cat: "Jugos",
-          n: "Jugo natural en agua",
-          p: 7000,
-          d: "Escoge un sabor.",
-          v: ["Mora", "Fresa", "Guanábana", "Lulo", "Maracuyá", "Frutos rojos", "Uva"],
-        },
-        {
-          id: "p90",
-          cat: "Jugos",
-          n: "Jugo natural en leche",
-          p: 8000,
-          d: "Escoge un sabor.",
-          v: ["Mango", "Tamarindo", "Maracumango", "Limón", "Naranja", "Mandarina", "Milo"],
-        },
-        { id: "p91", cat: "Cervezas", n: "Poker", p: 4500, d: "", v: [] },
-        { id: "p92", cat: "Cervezas", n: "Águila Original", p: 4500, d: "", v: [] },
-        { id: "p93", cat: "Cervezas", n: "Club Colombia", p: 6000, d: "", v: [] },
-        { id: "p94", cat: "Cervezas", n: "Águila Light", p: 4500, d: "", v: [] },
-        { id: "p95", cat: "Cervezas", n: "Corona", p: 6000, d: "", v: [] },
-        {
-          id: "p96",
-          cat: "Micheladas",
-          n: "Michelada tradicional (sal y limón)",
-          p: 8000,
-          d: "",
-          v: [],
-        },
-        { id: "p97", cat: "Micheladas", n: "Michelada de mango", p: 10000, d: "", v: [] },
-        { id: "p98", cat: "Micheladas", n: "Michelada de maracuyá", p: 10000, d: "", v: [] },
-        { id: "p99", cat: "Micheladas", n: "Michelada de piña", p: 10000, d: "", v: [] },
-        { id: "p100", cat: "Micheladas", n: "Michelada de fresa", p: 10000, d: "", v: [] },
-      ];
-      /* Imágenes ilustrativas por categoría. Cambiar por fotos reales cuando el cliente las envíe. */
-      const IMAGENES = {
-        Hamburguesas:
-          "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=750&q=75&auto=format&fit=crop",
-        Perros:
-          "https://images.unsplash.com/photo-1612392062798-2be77ca6e9b4?w=750&q=75&auto=format&fit=crop",
-        Asados:
-          "https://images.unsplash.com/photo-1544025162-d76694265947?w=750&q=75&auto=format&fit=crop",
-        "Pizza porción":
-          "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=750&q=75&auto=format&fit=crop",
-        Pizzetas:
-          "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=750&q=75&auto=format&fit=crop",
-        Panzerotti:
-          "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=750&q=75&auto=format&fit=crop",
-        Varios:
-          "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=750&q=75&auto=format&fit=crop",
-        Entradas:
-          "https://images.unsplash.com/photo-1544025162-d76694265947?w=750&q=75&auto=format&fit=crop",
-        Desgranados:
-          "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=750&q=75&auto=format&fit=crop",
-        Arepas:
-          "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=750&q=75&auto=format&fit=crop",
-        Infantil:
-          "https://images.unsplash.com/photo-1562967914-608f82629710?w=750&q=75&auto=format&fit=crop",
-        Adicionales:
-          "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=750&q=75&auto=format&fit=crop",
-        "Caldos y desayunos":
-          "https://images.unsplash.com/photo-1547592180-85f173990554?w=750&q=75&auto=format&fit=crop",
-        Ensaladas:
-          "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=750&q=75&auto=format&fit=crop",
-        Bebidas:
-          "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=750&q=75&auto=format&fit=crop",
-        Jugos:
-          "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=750&q=75&auto=format&fit=crop",
-        Cervezas:
-          "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=750&q=75&auto=format&fit=crop",
-        Micheladas:
-          "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=750&q=75&auto=format&fit=crop",
+      /* ============================================================
+         01. CONFIGURACIÓN DEL NEGOCIO
+         ============================================================ */
+      const CONFIG = {
+        nombre: "Juventus Burger",
+        whatsapp: "573103574308",
+        moneda: "COP"
       };
+      /* PRODUCTOS DE LA CARTA 2025: confirmar precios antes de publicar */
+      /* ============================================================
+         02. CARTA: NOMBRES, PRECIOS, INGREDIENTES Y OPCIONES
+         ============================================================ */
+      const PRODUCTOS = [{
+        id: "p1",
+        cat: "Entradas",
+        n: "Chicharrón con papa criolla",
+        p: 15000,
+        d: "",
+        v: []
+      }, {
+        id: "p2",
+        cat: "Perros",
+        n: "Perro americano tradicional",
+        p: 19000,
+        d: "Pan artesanal. Salchicha americana, cebolla, queso rayado, papa picada, salsas y queso doble crema.",
+        v: [],
+      }, {
+        id: "p3",
+        cat: "Perros",
+        n: "Perro ranchero corriente",
+        p: 19000,
+        d: "Pan artesanal. Salchicha ranchera, cebolla picada, queso rayado, papa picada, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p4",
+        cat: "Perros",
+        n: "Choriperro corriente",
+        p: 19000,
+        d: "Pan artesanal. Chorizo, cebolla picada, queso rayado, papa desmenuzada, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p5",
+        cat: "Perros",
+        n: "Perro suizo corriente",
+        p: 19000,
+        d: "Pan artesanal. Salchicha suiza, cebolla picada, queso rayado, papa picada, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p6",
+        cat: "Perros",
+        n: "Perro hawaiano",
+        p: 20000,
+        d: "Pan artesanal. Salchicha, cebolla picada, queso rayado, papa picada, piña, jamón, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p7",
+        cat: "Perros",
+        n: "Perro especial americano",
+        p: 23000,
+        d: "Pan artesanal. Salchicha americana, cebolla picada, queso rayado, papa picada, pollo desmenuzado, tocineta, jamón y papa francesa.",
+        v: [],
+      }, {
+        id: "p8",
+        cat: "Perros",
+        n: "Choriperro especial",
+        p: 23000,
+        d: "Pan artesanal. Chorizo, cebolla picada, queso rayado, papa picada, pollo desmenuzado, tocineta, jamón, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p9",
+        cat: "Perros",
+        n: "Perro suizo especial",
+        p: 25000,
+        d: "Pan artesanal. Salchicha suiza, cebolla picada, queso rayado, papa picada, pollo desmenuzado, tocineta, jamón, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p10",
+        cat: "Perros",
+        n: "Perro loco",
+        p: 27000,
+        d: "Pan artesanal. Salchicha americana, cebolla picada, queso rayado, papa picada, pollo desmenuzado, lomo de res, cabano, tocineta, jamón y papa francesa.",
+        v: [],
+      }, {
+        id: "p11",
+        cat: "Perros",
+        n: "Perro colombianito",
+        p: 26000,
+        d: "Pan artesanal. Salchicha americana, cebolla grille, carne desmechada, pollo desmenuzado, maíz tierno, jamón, tocineta, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p12",
+        cat: "Hamburguesas",
+        n: "Tradicional sin papa",
+        p: 16000,
+        d: "Pan artesanal. Carne 140 g, queso doble crema, jamón, lechuga, tomate y cebolla grille.",
+        v: [],
+      }, {
+        id: "p13",
+        cat: "Hamburguesas",
+        n: "Solo pollo",
+        p: 18000,
+        d: "Pan artesanal. Pollo desmenuzado, lechuga, tomate, cebolla grille, jamón, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p14",
+        cat: "Hamburguesas",
+        n: "Tradicional",
+        p: 20000,
+        d: "Pan artesanal. Carne 140 g, jamón, queso doble crema, lechuga, tomate, cebolla grille y papa francesa.",
+        v: [],
+      }, {
+        id: "p15",
+        cat: "Hamburguesas",
+        n: "Doble sencilla",
+        p: 24000,
+        d: "Pan artesanal. Doble carne, queso doble crema, jamón, lechuga, tomate, cebolla grille y papa francesa.",
+        v: [],
+      }, {
+        id: "p16",
+        cat: "Hamburguesas",
+        n: "Especial",
+        p: 25000,
+        d: "Pan artesanal. Carne 140 g, queso doble crema, jamón, pollo, tocineta, lechuga, tomate, cebolla grille y papa francesa.",
+        v: [],
+      }, {
+        id: "p17",
+        cat: "Hamburguesas",
+        n: "Colombianita",
+        p: 25000,
+        d: "Pan artesanal. Carne 140 g, lechuga, tomate, cebolla grille, jamón, queso doble crema, pollo desmenuzado, maíz, pimentón y papa francesa.",
+        v: [],
+      }, {
+        id: "p18",
+        cat: "Hamburguesas",
+        n: "Ranchera",
+        p: 26000,
+        d: "Pan artesanal. Carne 140 g, huevo frito, chorizo, lechuga, tomate, cebolla grille, jamón, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p19",
+        cat: "Hamburguesas",
+        n: "Juventus",
+        p: 26000,
+        d: "Pan artesanal. Carne 140 g, jamón, lechuga, tomate, cebolla grille, queso doble crema, maduro, chorizo, tocineta y papa francesa.",
+        v: [],
+      }, {
+        id: "p20",
+        cat: "Hamburguesas",
+        n: "Especial de filete",
+        p: 26000,
+        d: "Pan artesanal. Filete de pechuga, carne 140 g, lechuga, tomate, cebolla grille, jamón, queso doble crema, tocineta y papa francesa.",
+        v: [],
+      }, {
+        id: "p21",
+        cat: "Hamburguesas",
+        n: "Doble especial",
+        p: 27000,
+        d: "Pan artesanal. Doble carne, queso doble crema, jamón, pollo, tocineta, lechuga, tomate, cebolla grille y papa francesa.",
+        v: [],
+      }, {
+        id: "p22",
+        cat: "Hamburguesas",
+        n: "Americana",
+        p: 28000,
+        d: "Pan artesanal. Carne 140 g, jamón, lechuga, tomate, cebolla grille, queso doble crema, pollo, champiñones, salchicha americana, tocineta y papa francesa.",
+        v: [],
+      }, {
+        id: "p23",
+        cat: "Hamburguesas",
+        n: "Mexicana",
+        p: 30000,
+        d: "Pan artesanal. Carne 140 g, lomo de cerdo desmechado, chorizo, aguacate, jalapeños, aros de cebolla, lechuga, tomate, jamón, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p24",
+        cat: "Hamburguesas",
+        n: "La poporra",
+        p: 31000,
+        d: "Pan artesanal. Carne 140 g, carne desmechada, arepa, chicharrón, jamón, queso doble crema, aros de cebolla, lechuga, tomate y papa francesa.",
+        v: [],
+      }, {
+        id: "p25",
+        cat: "Hamburguesas",
+        n: "Carnívora",
+        p: 31000,
+        d: "Pan artesanal. Carne 140 g, filete de pechuga, carne desmechada, tocineta, queso doble crema, aros de cebolla, lechuga, tomate y papa francesa.",
+        v: [],
+      }, {
+        id: "p26",
+        cat: "Hamburguesas",
+        n: "3x3 súper",
+        p: 37000,
+        d: "Pan artesanal. Tres carnes de hamburguesa de 140 g, queso doble crema, filete de pechuga, tocineta, chorizo, cebolla grille, jamón, lechuga y tomate.",
+        v: [],
+      }, {
+        id: "p27",
+        cat: "Asados",
+        n: "Chatas al carbón 350 g",
+        p: 32000,
+        d: "Papa francesa, yuca o ensalada.",
+        v: [],
+      }, {
+        id: "p28",
+        cat: "Asados",
+        n: "Pechuga al carbón 350 g",
+        p: 28000,
+        d: "Papa francesa, yuca o ensalada.",
+        v: [],
+      }, {
+        id: "p29",
+        cat: "Asados",
+        n: "Pechuga al carbón en salsa de champiñón 350 g",
+        p: 30000,
+        d: "Papa francesa y ensalada.",
+        v: [],
+      }, {
+        id: "p30",
+        cat: "Asados",
+        n: "Carne de capón oreada 350 g",
+        p: 32000,
+        d: "Yuca al vapor y ensalada.",
+        v: [],
+      }, {
+        id: "p31",
+        cat: "Asados",
+        n: "Carne de campo fresca al carbón 350 g",
+        p: 28000,
+        d: "Yuca al vapor y ensalada.",
+        v: [],
+      }, {
+        id: "p32",
+        cat: "Asados",
+        n: "Picada criolla al carbón",
+        p: 60000,
+        d: "Carne fresca 300 g, pechuga 300 g, chorizo artesanal 200 g, costilla de cerdo 350 g; con yuca al vapor, papa criolla y ensalada.",
+        v: [],
+      }, {
+        id: "p33",
+        cat: "Asados",
+        n: "Metrocarne fresca al carbón",
+        p: 80000,
+        d: "Carne fresca 300 g, pechuga 300 g, chorizo artesanal 200 g, costilla de cerdo 350 g; con yuca al vapor, ensalada y suero.",
+        v: [],
+      }, {
+        id: "p34",
+        cat: "Pizza porción",
+        n: "Hawaiana",
+        p: 9000,
+        d: "Piña, jamón y queso.",
+        v: [],
+      }, {
+        id: "p35",
+        cat: "Pizza porción",
+        n: "Solo carne fría",
+        p: 9000,
+        d: "Jamón, cabano y salami.",
+        v: [],
+      }, {
+        id: "p36",
+        cat: "Pizza porción",
+        n: "Campesina",
+        p: 9000,
+        d: "Carne molida, verduras salteadas, pollo, maíz y salchicha.",
+        v: [],
+      }, {
+        id: "p37",
+        cat: "Pizza porción",
+        n: "Pollo champiñón",
+        p: 9000,
+        d: "",
+        v: []
+      }, {
+        id: "p38",
+        cat: "Pizza porción",
+        n: "Marinera",
+        p: 10000,
+        d: "Camarón, pollo, champiñón, palmito de cangrejo y verduras salteadas.",
+        v: [],
+      }, {
+        id: "p39",
+        cat: "Pizza porción",
+        n: "Choripizza",
+        p: 10000,
+        d: "Chorizo, huevo de codorniz, carne molida, maduro frito y maíz.",
+        v: [],
+      }, {
+        id: "p40",
+        cat: "Pizza porción",
+        n: "Pizza Juventus",
+        p: 10000,
+        d: "Chorizo, carne molida, maduro y tocineta.",
+        v: [],
+      }, {
+        id: "p41",
+        cat: "Panzerotti",
+        n: "Hawaiano",
+        p: 12000,
+        d: "",
+        v: []
+      }, {
+        id: "p42",
+        cat: "Panzerotti",
+        n: "Pollo champiñón",
+        p: 12000,
+        d: "",
+        v: []
+      }, {
+        id: "p43",
+        cat: "Panzerotti",
+        n: "Campesina",
+        p: 12000,
+        d: "",
+        v: []
+      }, {
+        id: "p44",
+        cat: "Panzerotti",
+        n: "Carnes frías",
+        p: 12000,
+        d: "",
+        v: []
+      }, {
+        id: "p45",
+        cat: "Panzerotti",
+        n: "Marinero",
+        p: 15000,
+        d: "",
+        v: []
+      }, {
+        id: "p46",
+        cat: "Panzerotti",
+        n: "Juventus",
+        p: 15000,
+        d: "",
+        v: []
+      }, {
+        id: "p47",
+        cat: "Panzerotti",
+        n: "Choripizza",
+        p: 15000,
+        d: "",
+        v: []
+      }, {
+        id: "p48",
+        cat: "Pizzetas",
+        n: "Pizzeta tradicional 20 cm",
+        p: 16000,
+        d: "Consultar sabores disponibles.",
+        v: [],
+      }, {
+        id: "p49",
+        cat: "Pizzetas",
+        n: "Pizzeta tradicional 30 cm",
+        p: 26000,
+        d: "Consultar sabores disponibles.",
+        v: [],
+      }, {
+        id: "p50",
+        cat: "Varios",
+        n: "Papas locas",
+        p: 29000,
+        d: "Chorizo, pollo desmenuzado, maíz tierno, lechuga, queso gratinado, tocineta, salsas y papa francesa.",
+        v: [],
+      }, {
+        id: "p51",
+        cat: "Varios",
+        n: "Papas locas poderosas",
+        p: 32000,
+        d: "Chorizo, pollo desmenuzado, maíz, lomito de res, lechuga, queso doble crema, tocineta, salsas y papa francesa.",
+        v: [],
+      }, {
+        id: "p52",
+        cat: "Varios",
+        n: "Papas locas mega poderosas",
+        p: 45000,
+        d: "Chorizo, filete de pechuga, maíz tierno, carne desmechada, salchicha americana, maduro picado, tocineta, lechuga y queso doble crema.",
+        v: [],
+      }, {
+        id: "p53",
+        cat: "Varios",
+        n: "Patacón poderoso",
+        p: 26000,
+        d: "Maíz tierno, lomito de res, chorizo, filete de pechuga, cebolla grille, tocineta y queso doble crema.",
+        v: [],
+      }, {
+        id: "p54",
+        cat: "Varios",
+        n: "Patacón relleno",
+        p: 23000,
+        d: "Pollo desmenuzado, lomo de res, maíz tierno, cebolla grille y queso gratinado.",
+        v: [],
+      }, {
+        id: "p55",
+        cat: "Varios",
+        n: "Alitas a la BBQ",
+        p: 22000,
+        d: "Papa francesa y ensalada.",
+        v: [],
+      }, {
+        id: "p56",
+        cat: "Varios",
+        n: "Costillitas BBQ",
+        p: 25000,
+        d: "Papa francesa y ensalada.",
+        v: [],
+      }, {
+        id: "p57",
+        cat: "Varios",
+        n: "Salchipapa corriente",
+        p: 17000,
+        d: "",
+        v: []
+      }, {
+        id: "p58",
+        cat: "Varios",
+        n: "Salchipapa especial",
+        p: 28000,
+        d: "Salchicha, pollo desmenuzado, lechuga, queso doble crema, tocineta, salsas y papa francesa.",
+        v: [],
+      }, {
+        id: "p59",
+        cat: "Varios",
+        n: "Choripapa corriente",
+        p: 18000,
+        d: "",
+        v: []
+      }, {
+        id: "p60",
+        cat: "Varios",
+        n: "Choripapa especial",
+        p: 28000,
+        d: "Chorizo, pollo desmenuzado, lechuga, queso doble crema, tocineta y papa francesa.",
+        v: [],
+      }, {
+        id: "p61",
+        cat: "Varios",
+        n: "Suizo corriente",
+        p: 24000,
+        d: "Salchicha suiza, lechuga, queso doble crema, papa picada, salsas y papa francesa.",
+        v: [],
+      }, {
+        id: "p62",
+        cat: "Varios",
+        n: "Suizo especial",
+        p: 28000,
+        d: "Salchicha suiza, pollo desmenuzado, lechuga, tocineta, queso doble crema, salsas y papa francesa.",
+        v: [],
+      }, {
+        id: "p63",
+        cat: "Varios",
+        n: "Morrongo",
+        p: 32000,
+        d: "Lomo de res, chorizo, filete de pechuga, maíz tierno, porción de papa y queso gratinado.",
+        v: [],
+      }, {
+        id: "p64",
+        cat: "Varios",
+        n: "Picada mixta",
+        p: 32000,
+        d: "Lomo de res, lomo de cerdo, pechuga, salchicha, chorizo, ensalada y papa francesa.",
+        v: [],
+      }, {
+        id: "p65",
+        cat: "Varios",
+        n: "Picada mixta para 3 personas",
+        p: 40000,
+        d: "Lomo de res, lomo de cerdo, salchicha, pechuga, chorizo y papa francesa.",
+        v: [],
+      }, {
+        id: "p66",
+        cat: "Desgranados",
+        n: "Desgranado vegetariano",
+        p: 20000,
+        d: "Maíz tierno, verdura salteada, champiñón, queso gratinado, queso rayado y papa francesa.",
+        v: [],
+      }, {
+        id: "p67",
+        cat: "Desgranados",
+        n: "Desgranado de mazorca mixto",
+        p: 30000,
+        d: "Maíz tierno, pollo desmenuzado, lomito de res, salchicha, tocineta, salsas, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p68",
+        cat: "Desgranados",
+        n: "Desgranado de mazorca",
+        p: 28000,
+        d: "Maíz tierno, pollo desmenuzado, salchicha, tocineta, salsas, queso doble crema y papa francesa.",
+        v: [],
+      }, {
+        id: "p69",
+        cat: "Arepas",
+        n: "Arepa corriente",
+        p: 7000,
+        d: "Cebolla picada, queso rayado, papa picada y salsas.",
+        v: [],
+      }, {
+        id: "p70",
+        cat: "Arepas",
+        n: "Arepa especial de pollo",
+        p: 12000,
+        d: "Pollo desmenuzado, cebolla picada, queso rayado, papa picada y salsas.",
+        v: [],
+      }, {
+        id: "p71",
+        cat: "Arepas",
+        n: "Arepa especial de carne",
+        p: 13000,
+        d: "Carne de hamburguesa, cebolla picada, queso rayado, papa picada y salsas.",
+        v: [],
+      }, {
+        id: "p72",
+        cat: "Arepas",
+        n: "Arepa mixta",
+        p: 15000,
+        d: "Carne de hamburguesa, pollo desmenuzado, cebolla picada, queso rayado, papa picada y salsas.",
+        v: [],
+      }, {
+        id: "p73",
+        cat: "Infantil",
+        n: "Nuggets",
+        p: 22000,
+        d: "5 nuggets de pollo con porción de papa francesa y salsas.",
+        v: [],
+      }, {
+        id: "p74",
+        cat: "Adicionales",
+        n: "Porción de papa francesa",
+        p: 10000,
+        d: "",
+        v: []
+      }, {
+        id: "p75",
+        cat: "Adicionales",
+        n: "Porción de tocineta",
+        p: 4000,
+        d: "",
+        v: []
+      }, {
+        id: "p76",
+        cat: "Adicionales",
+        n: "Porción de salchicha",
+        p: 5000,
+        d: "",
+        v: []
+      }, {
+        id: "p77",
+        cat: "Adicionales",
+        n: "Porción de queso",
+        p: 4000,
+        d: "",
+        v: []
+      }, {
+        id: "p78",
+        cat: "Adicionales",
+        n: "Porción de chorizo",
+        p: 6000,
+        d: "",
+        v: []
+      }, {
+        id: "p79",
+        cat: "Adicionales",
+        n: "Porción de carne de hamburguesa",
+        p: 6000,
+        d: "",
+        v: [],
+      }, {
+        id: "p80",
+        cat: "Adicionales",
+        n: "Porción de lomo de res 130 g",
+        p: 6000,
+        d: "",
+        v: []
+      }, {
+        id: "p81",
+        cat: "Caldos y desayunos",
+        n: "Caldo con huevo",
+        p: 12000,
+        d: "Arepa blanca o amarilla.",
+        v: [],
+      }, {
+        id: "p82",
+        cat: "Caldos y desayunos",
+        n: "Caldo de costilla",
+        p: 15000,
+        d: "Arepa blanca o amarilla.",
+        v: [],
+      }, {
+        id: "p83",
+        cat: "Caldos y desayunos",
+        n: "Popular Juventus",
+        p: 44000,
+        d: "Caldo de costilla, chatas 250 g, arepa, yuca al vapor y ensalada.",
+        v: [],
+      }, {
+        id: "p84",
+        cat: "Caldos y desayunos",
+        n: "Huevos revueltos",
+        p: 5000,
+        d: "Arepa blanca o amarilla.",
+        v: [],
+      }, {
+        id: "p85",
+        cat: "Caldos y desayunos",
+        n: "Huevos pericos",
+        p: 6000,
+        d: "Arepa blanca o amarilla.",
+        v: [],
+      }, {
+        id: "p86",
+        cat: "Ensaladas",
+        n: "Ensalada de pechuga",
+        p: 16000,
+        d: "Lomito de pechuga, maíz tierno, lechuga, tomate, cebolla rebanada y aguacate.",
+        v: [],
+      }, {
+        id: "p87",
+        cat: "Ensaladas",
+        n: "Ensalada de atún",
+        p: 20000,
+        d: "Atún, maíz tierno, lechuga, tomate, cebolla rebanada y aguacate.",
+        v: [],
+      }, {
+        id: "p88",
+        cat: "Bebidas",
+        n: "Jarra de limonada",
+        p: 5000,
+        d: "",
+        v: []
+      }, {
+        id: "p89",
+        cat: "Jugos",
+        n: "Jugo natural en agua",
+        p: 7000,
+        d: "Escoge un sabor.",
+        v: ["Mora", "Fresa", "Guanábana", "Lulo", "Maracuyá", "Frutos rojos", "Uva"],
+      }, {
+        id: "p90",
+        cat: "Jugos",
+        n: "Jugo natural en leche",
+        p: 8000,
+        d: "Escoge un sabor.",
+        v: ["Mango", "Tamarindo", "Maracumango", "Limón", "Naranja", "Mandarina", "Milo"],
+      }, {
+        id: "p91",
+        cat: "Cervezas",
+        n: "Poker",
+        p: 4500,
+        d: "",
+        v: []
+      }, {
+        id: "p92",
+        cat: "Cervezas",
+        n: "Águila Original",
+        p: 4500,
+        d: "",
+        v: []
+      }, {
+        id: "p93",
+        cat: "Cervezas",
+        n: "Club Colombia",
+        p: 6000,
+        d: "",
+        v: []
+      }, {
+        id: "p94",
+        cat: "Cervezas",
+        n: "Águila Light",
+        p: 4500,
+        d: "",
+        v: []
+      }, {
+        id: "p95",
+        cat: "Cervezas",
+        n: "Corona",
+        p: 6000,
+        d: "",
+        v: []
+      }, {
+        id: "p96",
+        cat: "Micheladas",
+        n: "Michelada tradicional (sal y limón)",
+        p: 8000,
+        d: "",
+        v: [],
+      }, {
+        id: "p97",
+        cat: "Micheladas",
+        n: "Michelada de mango",
+        p: 10000,
+        d: "",
+        v: []
+      }, {
+        id: "p98",
+        cat: "Micheladas",
+        n: "Michelada de maracuyá",
+        p: 10000,
+        d: "",
+        v: []
+      }, {
+        id: "p99",
+        cat: "Micheladas",
+        n: "Michelada de piña",
+        p: 10000,
+        d: "",
+        v: []
+      }, {
+        id: "p100",
+        cat: "Micheladas",
+        n: "Michelada de fresa",
+        p: 10000,
+        d: "",
+        v: []
+      }, ];
+      /* ============================================================
+         03. FOTOS POR CATEGORÍA
+         Archivos en la carpeta imagenes, junto a este index.html.
+         Para cambiar una foto, reemplaza el archivo o modifica su ruta.
+         Son ilustraciones de categoría; los ingredientes de cada plato
+         se consultan en PRODUCTOS.
+         ============================================================ */
+      const IMAGENES = {
+        "Hamburguesas": "./imagenes/hamburguesas.webp",
+        "Perros": "./imagenes/perros.webp",
+        "Asados": "./imagenes/asados.webp",
+        "Pizza porción": "./imagenes/pizza-porcion.webp",
+        "Pizzetas": "./imagenes/pizzetas.webp",
+        "Panzerotti": "./imagenes/panzerotti.webp",
+        "Varios": "./imagenes/varios.webp",
+        "Entradas": "./imagenes/entradas.webp",
+        "Desgranados": "./imagenes/desgranados.webp",
+        "Arepas": "./imagenes/arepas.webp",
+        "Infantil": "./imagenes/infantil.webp",
+        "Adicionales": "./imagenes/adicionales.webp",
+        "Caldos y desayunos": "./imagenes/caldos.webp",
+        "Ensaladas": "./imagenes/ensaladas.webp",
+        "Bebidas": "./imagenes/bebidas.webp",
+        "Jugos": "./imagenes/jugos.webp",
+        "Cervezas": "./imagenes/cervezas.webp",
+        "Micheladas": "./imagenes/micheladas.webp",
+      };
+      /* ============================================================
+         04. UTILIDADES Y ESTADO
+         ============================================================ */
       const $ = (id) => document.getElementById(id);
       const dinero = (n) =>
         new Intl.NumberFormat("es-CO", {
@@ -2013,18 +2143,22 @@
       let productoOpcion = null;
       let ultimoFoco = null;
       let avisoTimeout;
+
       function slug(t) {
         return t
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase();
       }
+      /* ============================================================
+         05. MOSTRAR Y BUSCAR PRODUCTOS
+         ============================================================ */
       function filtrar() {
         const q = slug($("buscar").value.trim());
         const lista = PRODUCTOS.filter(
           (p) =>
-            (categoriaActual === "Todas" || p.cat === categoriaActual) &&
-            (!q || slug(p.n + " " + p.d + " " + p.cat).includes(q)),
+          (categoriaActual === "Todas" || p.cat === categoriaActual) &&
+          (!q || slug(p.n + " " + p.d + " " + p.cat).includes(q)),
         );
         const grid = $("productosGrid");
         grid.replaceChildren();
@@ -2039,9 +2173,10 @@
           img.src = IMAGENES[p.cat] || IMAGENES["Hamburguesas"];
           img.alt = "Imagen ilustrativa de " + p.cat;
           img.loading = "lazy";
+          img.decoding = "async";
           img.onerror = () => {
             img.onerror = null;
-            img.src = IMAGENES["Hamburguesas"];
+            img.hidden = true;
           };
           const tag = document.createElement("span");
           tag.className = "tag";
@@ -2078,6 +2213,9 @@
         $("cuentaProductos").textContent = lista.length + " productos";
         $("sinResultados").hidden = lista.length !== 0;
       }
+      /* ============================================================
+         06. BOTONES DE CATEGORÍAS
+         ============================================================ */
       function renderCategorias() {
         const cont = $("categoriasLista");
         cont.replaceChildren();
@@ -2091,13 +2229,21 @@
             categoriaActual = c;
             renderCategorias();
             filtrar();
-            $("menu").scrollIntoView({ behavior: "smooth" });
+            $("menu").scrollIntoView({
+              behavior: "smooth"
+            });
           };
           cont.append(b);
         });
       }
+      /* ============================================================
+         07. SELECCIÓN DE SABORES
+         ============================================================ */
       function abrirOpciones(p, boton) {
-        productoOpcion = { p, boton };
+        productoOpcion = {
+          p,
+          boton
+        };
         ultimoFoco = boton;
         $("tituloOpciones").textContent = p.n;
         const s = $("selectorOpcion");
@@ -2111,6 +2257,7 @@
         $("modalOpciones").classList.add("visible");
         s.focus();
       }
+
       function cerrarOpciones() {
         $("modalOpciones").classList.remove("visible");
         productoOpcion = null;
@@ -2122,22 +2269,33 @@
       });
       $("confirmarOpcion").onclick = () => {
         if (!productoOpcion) return;
-        const { p, boton } = productoOpcion;
+        const {
+          p,
+          boton
+        } = productoOpcion;
         const card = boton.closest(".producto");
         const v = $("selectorOpcion").value;
         cerrarOpciones();
         agregar(p, v, card, boton);
       };
+      /* ============================================================
+         08. AÑADIR PRODUCTOS Y ANIMACIÓN
+         ============================================================ */
       function agregar(p, v, card, boton) {
         const key = p.id + "|" + v;
         const prev = carrito.get(key);
-        carrito.set(key, { p, v, n: (prev?.n || 0) + 1 });
+        carrito.set(key, {
+          p,
+          v,
+          n: (prev?.n || 0) + 1
+        });
         actualizar();
         animarProducto(card, boton);
         clearTimeout(avisoTimeout);
         $("aviso").classList.add("visible");
         avisoTimeout = setTimeout(() => $("aviso").classList.remove("visible"), 1100);
       }
+
       function animarProducto(tarjeta, boton) {
         const original = boton.textContent;
         boton.textContent = "✓ Añadido";
@@ -2166,16 +2324,20 @@
             dy = b.top + b.height / 2 - (a.top + a.height / 2);
           mini
             .animate(
-              [
-                { transform: "translate(0,0) scale(1)", opacity: 1 },
-                {
-                  transform: `translate(${dx * 0.5}px,${dy * 0.5 - 110}px) scale(.7)`,
-                  opacity: 1,
-                  offset: 0.55,
-                },
-                { transform: `translate(${dx}px,${dy}px) scale(.15)`, opacity: 0 },
-              ],
-              { duration: 750, easing: "ease-in-out" },
+              [{
+                transform: "translate(0,0) scale(1)",
+                opacity: 1
+              }, {
+                transform: `translate(${dx * 0.5}px,${dy * 0.5 - 110}px) scale(.7)`,
+                opacity: 1,
+                offset: 0.55,
+              }, {
+                transform: `translate(${dx}px,${dy}px) scale(.15)`,
+                opacity: 0
+              }, ], {
+                duration: 750,
+                easing: "ease-in-out"
+              },
             )
             .finished.then(() => mini.remove())
             .catch(() => mini.remove());
@@ -2183,11 +2345,21 @@
         setTimeout(() => {
           if (dest.animate)
             dest.animate(
-              [{ transform: "scale(1)" }, { transform: "scale(1.16)" }, { transform: "scale(1)" }],
-              { duration: 350 },
+              [{
+                transform: "scale(1)"
+              }, {
+                transform: "scale(1.16)"
+              }, {
+                transform: "scale(1)"
+              }], {
+                duration: 350
+              },
             );
         }, 650);
       }
+      /* ============================================================
+         09. CANTIDADES Y TOTALES DEL CARRITO
+         ============================================================ */
       function cambiar(key, n) {
         const item = carrito.get(key);
         if (!item) return;
@@ -2195,6 +2367,7 @@
         if (item.n <= 0) carrito.delete(key);
         actualizar();
       }
+
       function actualizar() {
         const lista = $("listaPedido");
         lista.replaceChildren();
@@ -2242,12 +2415,16 @@
         $("contadorPedido").textContent = cantidad;
         $("totalPedido").textContent = dinero(total);
       }
+      /* ============================================================
+         10. ABRIR Y CERRAR EL PEDIDO
+         ============================================================ */
       function abrirCarrito() {
         ultimoFoco = document.activeElement;
         $("fondoPedido").classList.add("visible");
         document.body.classList.add("bloqueado");
         $("cerrarPedido").focus();
       }
+
       function cerrarCarrito() {
         $("fondoPedido").classList.remove("visible");
         document.body.classList.remove("bloqueado");
@@ -2264,6 +2441,9 @@
           else if ($("fondoPedido").classList.contains("visible")) cerrarCarrito();
         }
       });
+      /* ============================================================
+         11. DATOS DE ENTREGA Y ENVÍO A WHATSAPP
+         ============================================================ */
       function entregaCambio() {
         const dom = $("entregaPedido").value === "Domicilio";
         $("campoDireccion").hidden = !dom;
