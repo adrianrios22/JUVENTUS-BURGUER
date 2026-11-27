@@ -1126,6 +1126,19 @@
 #inicio.hero .hero-ctas {gap:10px;}
 }
 </style>
+<style id="hero-texto-botones">
+#inicio.hero .hero-content {max-width:48%;}
+#inicio.hero .hero-ctas {display:flex;flex-direction:column;align-items:flex-start;gap:10px;}
+#inicio.hero .hero-ctas .btn {box-sizing:border-box;width:185px;max-width:100%;min-height:44px;padding:10px 8px;border:1.5px solid var(--principal);border-radius:12px;background:transparent;color:#fff;box-shadow:0 0 9px #ffd00040;white-space:nowrap;font-size:14px;line-height:1.2;}
+#inicio.hero .hero-ctas .btn i {color:var(--principal);}
+#inicio.hero .hero-ctas .btn:hover {background:#ffd00020;color:#fff;}
+@media(max-width:780px){
+#inicio.hero .hero-content {max-width:48%;transform:translateY(-16%);}
+#inicio.hero .pill {font-size:9px;letter-spacing:.5px;padding:7px 8px;}
+#inicio.hero h1 {font-size:clamp(27px,7.5vw,44px);margin:14px 0 17px;line-height:.98;}
+#inicio.hero .hero-ctas .btn {width:148px;font-size:12px;min-height:40px;padding:8px 5px;}
+}
+</style>
 </head>
   <!-- CONTENIDO VISIBLE DE LA PÁGINA -->
   <body>
@@ -1155,8 +1168,8 @@
             <span class="pill">🔥 SABOR QUE JUEGA EN PRIMERA</span>
             <h1>UNA PASIÓN.<br /><span>UN SABOR.</span></h1>
             <div class="hero-ctas">
-              <a class="btn" href="#menu">Explorar el menú ↓</a
-              ><a class="btn btn-outline" href="#contacto">Contáctanos</a>
+              <a class="btn" href="#menu">Ver menú</a
+              ><a class="btn btn-outline" href="#contacto"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Contáctanos</a>
             </div>
           </div>
         </div>
