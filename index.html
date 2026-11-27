@@ -1143,6 +1143,29 @@
 #inicio.hero .hero-ctas .btn {width:clamp(140px,43vw,185px);font-size:13px;min-height:42px;padding:8px 10px;}
 }
 </style>
+
+<style id="juventus-bordes-animados">
+@property --juve-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes juve-borde-vivo { to { --juve-angle: 360deg; } }
+@supports (mask-composite: exclude) {
+  #inicio.hero .hero-ctas .btn, .producto, .btn-agregar, .btn-carrito { position:relative; }
+  .btn-carrito { position:fixed; }
+  #inicio.hero .hero-ctas .btn::after, .producto::after, .btn-agregar::after, .btn-carrito::after {
+    content:""; position:absolute; inset:0; border-radius:inherit; padding:2px;
+    background:conic-gradient(from var(--juve-angle), transparent 0deg 260deg, #ffd00030 290deg, var(--principal) 325deg, #fff6ba 337deg, var(--principal) 347deg, transparent 360deg);
+    mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite:exclude; pointer-events:none; z-index:3;
+    animation:juve-borde-vivo 3.2s linear infinite;
+  }
+  .producto::after { padding:1.5px; animation-duration:5s; }
+  .producto:nth-child(3n+2)::after { animation-delay:-1.7s; }
+  .producto:nth-child(3n+3)::after { animation-delay:-3.3s; }
+  .btn-agregar::after, .btn-carrito::after { animation-duration:2.8s; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #inicio.hero .hero-ctas .btn::after, .producto::after, .btn-agregar::after, .btn-carrito::after { animation:none; }
+}
+</style>
 </head>
   <!-- CONTENIDO VISIBLE DE LA PÁGINA -->
   <body>
