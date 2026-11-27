@@ -1109,6 +1109,99 @@
         }
       }
     </style>
+  
+    <style id="hero-ajuste-juventus">
+      /* Ajuste solicitado: solo cambia el hero (imagen + composición) */
+      .hero {
+        position: relative;
+        min-height: 640px;
+        padding: 92px 0;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background-color: #050505;
+        background-image:
+          linear-gradient(90deg, rgba(4, 4, 4, 0.96) 0%, rgba(4, 4, 4, 0.95) 28%, rgba(4, 4, 4, 0.72) 44%, rgba(4, 4, 4, 0.28) 60%, rgba(4, 4, 4, 0.05) 76%),
+          url("./imagenes/hero-juventus.jpg");
+        background-repeat: no-repeat, no-repeat;
+        background-size: cover, auto 92%;
+        background-position: center center, right 1% bottom;
+      }
+      .hero::before {
+        content: none;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 78% 14%, rgba(255, 208, 0, 0.16), transparent 26%),
+          linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.18));
+      }
+      .hero .contenedor {
+        position: relative;
+        z-index: 1;
+      }
+      .hero-content {
+        max-width: min(430px, 48vw);
+      }
+      .hero .pill {
+        margin-bottom: 14px;
+      }
+      .hero h1 {
+        font: 900 clamp(50px, 8vw, 106px)/0.86 "Barlow Condensed", sans-serif;
+        letter-spacing: -1px;
+        margin: 0 0 18px;
+        text-transform: uppercase;
+      }
+      .hero-ctas {
+        margin-top: 8px;
+      }
+      @media (max-width: 920px) {
+        .hero {
+          min-height: 610px;
+          background-size: cover, auto 84%;
+          background-position: center center, right -24px bottom;
+        }
+        .hero-content {
+          max-width: 390px;
+        }
+      }
+      @media (max-width: 620px) {
+        .hero {
+          min-height: 620px;
+          padding: 78px 0;
+          background-image:
+            linear-gradient(90deg, rgba(4, 4, 4, 0.95) 0%, rgba(4, 4, 4, 0.92) 34%, rgba(4, 4, 4, 0.62) 57%, rgba(4, 4, 4, 0.18) 78%),
+            url("./imagenes/hero-juventus.jpg");
+          background-size: cover, auto 70%;
+          background-position: center center, right -34px bottom 8px;
+        }
+        .hero-content {
+          max-width: 250px;
+        }
+        .hero h1 {
+          font-size: clamp(42px, 10vw, 62px);
+          line-height: 0.9;
+        }
+        .hero .pill {
+          font-size: 10px;
+          padding: 7px 12px;
+          letter-spacing: 1.4px;
+        }
+      }
+      @media (max-width: 420px) {
+        .hero {
+          background-size: cover, auto 66%;
+          background-position: center center, right -48px bottom 12px;
+        }
+        .hero-content {
+          max-width: 220px;
+        }
+      }
+    </style>
+
   </head>
   <!-- CONTENIDO VISIBLE DE LA PÁGINA -->
   <body>
